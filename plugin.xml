@@ -50,9 +50,8 @@
             </feature>
             <!-- 
             <preference name="deployment-target" value="12.0" />
-     
+      -->
             <preference name="UseSwiftLanguageVersion" value="5" />
-                   -->
         </config-file>
 
         <source-file src="src/ios/NFCTapPlugin.swift" />
