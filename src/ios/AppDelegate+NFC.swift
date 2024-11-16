@@ -6,8 +6,8 @@
 import CoreNFC
 
 extension AppDelegate {
-    
-    override open func application(_ application: UIApplication,
+    // override open 
+    func application(_ application: UIApplication,
                      continue userActivity: NSUserActivity,
                      restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
         
