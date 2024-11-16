@@ -6,6 +6,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+        /*
         guard userActivity.activityType == NSUserActivityTypeBrowsingWeb else {
             return false
         }
@@ -20,7 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
         } else {
             return false
-        }     
+        } 
+        */    
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
