@@ -23,24 +23,6 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        NSLog("Extending UIApplicationDelegate")
-        
-        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb else {
-            return false
-        }
-        
-        // Confirm that the NSUserActivity object contains a valid NDEF message.
-        if #available(iOS 12.0, *) {
-            let ndefMessage = userActivity.ndefMessagePayload
-            guard ndefMessage.records.count > 0,
-            ndefMessage.records[0].typeNameFormat != .empty else {
-                return false
-            }
-            return resolved
-        } else {
-            return false
-        }
         return true
     }
 
