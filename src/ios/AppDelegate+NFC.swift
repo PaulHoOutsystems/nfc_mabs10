@@ -4,7 +4,7 @@
 //  Created by André Gonçalves on 13/04/2020.
 //
 import CoreNFC
-
+/*
 extension AppDelegate {
     // override open 
     func application(_ application: UIApplication,
@@ -16,3 +16,4 @@ extension AppDelegate {
         return true;
     }
 }
+*/
