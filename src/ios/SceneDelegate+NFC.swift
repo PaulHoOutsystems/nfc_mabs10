@@ -11,14 +11,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).    
         // guard let _ = (scene as? UIWindowScene) else { return }
         let ndefMessage = userActivity.ndefMessagePayload
-        guard ndefMessage.records.count > 0,
-        ndefMessage.records[0].typeNameFormat != .empty else {
+        guard ndefMessage.records.count > 0, ndefMessage.records[0].typeNameFormat != .empty else {
             return 
         }
-        guard let windowScene = (scene as? UIWindowScene) else { return }
-        let window = UIWindow(windowScene: windowScene)
-        let viewController = ArticleListViewController()
-        let nfcPluginInstance: NfcPlugin = viewController.getCommandInstance("NfcPlugin") as! NfcPlugin
+        // guard let windowScene = (scene as? UIWindowScene) else { return }
+        // let window = UIWindow(windowScene: windowScene)
+        // let viewController = ArticleListViewController()
+        // let nfcPluginInstance: NfcPlugin = viewController.getCommandInstance("NfcPlugin") as! NfcPlugin
         
         // DispatchQueue.global().async {
         //     let waitingTimeInterval: Double = 0.1;
