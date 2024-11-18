@@ -14,7 +14,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard ndefMessage.records.count > 0, ndefMessage.records[0].typeNameFormat != .empty else {
             return 
         }
-        // let viewController = ArticleListViewController()
+        let viewController = window.rootViewController
         // let nfcPluginInstance: NfcPlugin = viewController.getCommandInstance("NfcPlugin") as! NfcPlugin
         
         // DispatchQueue.global().async {
