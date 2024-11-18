@@ -4,4 +4,5 @@
 //
 //  (c) 2018 IoTize Solutions
 
+#import <Cordova/CDV.h>
 #import "../../AppDelegate.h"
