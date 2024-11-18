@@ -14,10 +14,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard ndefMessage.records.count > 0, ndefMessage.records[0].typeNameFormat != .empty else {
             return 
         }
-        // guard let windowScene = (scene as? UIWindowScene) else { return }
-        // let window = UIWindow(windowScene: windowScene)
-        // let viewController = ArticleListViewController()
-        // let nfcPluginInstance: NfcPlugin = viewController.getCommandInstance("NfcPlugin") as! NfcPlugin
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        let window = UIWindow(windowScene: windowScene)
+        let viewController = ArticleListViewController()
+        let nfcPluginInstance: NfcPlugin = viewController.getCommandInstance("NfcPlugin") as! NfcPlugin
         
         // DispatchQueue.global().async {
         //     let waitingTimeInterval: Double = 0.1;
