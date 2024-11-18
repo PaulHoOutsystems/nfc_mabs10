@@ -10,31 +10,29 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).    
         // guard let _ = (scene as? UIWindowScene) else { return }
-        if #available(iOS 17.2, *) {
-            let ndefMessage = userActivity.ndefMessagePayload
-            guard ndefMessage.records.count > 0,
-            ndefMessage.records[0].typeNameFormat != .empty else {
-                return 
-            }
-            guard let windowScene = (scene as? UIWindowScene) else { return }
-            let window = UIWindow(windowScene: windowScene)
-            let viewController = ArticleListViewController()
-            let nfcPluginInstance: NfcPlugin = viewController.getCommandInstance("NfcPlugin") as! NfcPlugin
-            
-            DispatchQueue.global().async {
-                let waitingTimeInterval: Double = 0.1;
-                print("<NFC> Did start timeout")
-                for _ in 1...2000 { // 5?s timeout
-                    if ( !nfcPluginInstance.isListeningNDEF ) {
-                        Thread.sleep(forTimeInterval: waitingTimeInterval)
-                    } else {
-                        let jsonDictionary = ndefMessage.ndefMessageToJSON()
-                        nfcPluginInstance.sendThroughChannel(jsonDictionary: jsonDictionary)
-                        return
-                    }
-                }
-            }
+        let ndefMessage = userActivity.ndefMessagePayload
+        guard ndefMessage.records.count > 0,
+        ndefMessage.records[0].typeNameFormat != .empty else {
+            return 
         }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        let window = UIWindow(windowScene: windowScene)
+        let viewController = ArticleListViewController()
+        let nfcPluginInstance: NfcPlugin = viewController.getCommandInstance("NfcPlugin") as! NfcPlugin
+        
+        // DispatchQueue.global().async {
+        //     let waitingTimeInterval: Double = 0.1;
+        //     print("<NFC> Did start timeout")
+        //     for _ in 1...2000 { // 5?s timeout
+        //         if ( !nfcPluginInstance.isListeningNDEF ) {
+        //             Thread.sleep(forTimeInterval: waitingTimeInterval)
+        //         } else {
+        //             let jsonDictionary = ndefMessage.ndefMessageToJSON()
+        //             nfcPluginInstance.sendThroughChannel(jsonDictionary: jsonDictionary)
+        //             return
+        //         }
+        //     }
+        // }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
