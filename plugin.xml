@@ -46,6 +46,7 @@
             <feature name="NFCMABS101Swift">
                 <param name="ios-package" value="NFCMABS101Swift" />
             </feature>
+            <preference name="UseSwiftLanguageVersion" value="5" />
         </config-file>
         <source-file src="src/ios/NFCMABS101.swift"/>
         <!-- frameworks -->
