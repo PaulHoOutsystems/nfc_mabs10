@@ -39,54 +39,16 @@
     </platform>
 
     <platform name="ios">
-        <dependency id="cordova-plugin-add-swift-support@2.0.2"/>
-        <js-module src="www/nfc_mabs10.js" name="NFC">
-            <runs />
+        <js-module src="www/nfc_mabs101.js" name="NFC">
+             <clobbers target="nfcmabs101swift" />
         </js-module>
-
         <config-file parent="/*" target="config.xml">
-            <feature name="NfcPlugin">
-                <param name="ios-package" value="NfcPlugin" />
+            <feature name="NFCMABS101Swift">
+                <param name="ios-package" value="NFCMABS101Swift" />
             </feature>
-            <!-- 
-            <preference name="deployment-target" value="12.0" />      
-            <preference name="UseLegacySwiftLanguageVersion" value="true" />
-            -->
-            <preference name="UseSwiftLanguageVersion" value="5" />
         </config-file>
-
-        <source-file src="src/ios/NFCTapPlugin.swift" />
-        <source-file src="src/ios/ISO15Reader.swift" />
-        <source-file src="src/ios/NFCTagReaderDelegate.swift" />
-        <source-file src="src/ios/NFCNDEFReaderDelegate.swift" />
-        <source-file src="src/ios/NFCNDEFWriterDelegate.swift" />
-        <source-file src="src/ios/AppDelegate+NFC.swift" />
-        <source-file src="src/ios/SceneDelegate+NFC.swift" />
-        <source-file src="src/ios/Utils.swift" />
-        <source-file src="src/ios/ISO14443.swift" />
-        <source-file src="src/ios/NFCPlugin-Bridging-Header.h" />
-
-
-        <!-- https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_nfc_readersession_formats?language=objc -->
-        <config-file parent="com.apple.developer.nfc.readersession.formats" platform="ios" target="*-Debug.plist">
-            <array>
-                <string>NDEF</string>
-                <string>TAG</string>
-            </array>
-        </config-file>
-        <config-file parent="com.apple.developer.nfc.readersession.formats" platform="ios" target="*-Release.plist">
-            <array>
-                <string>NDEF</string>
-                <string>TAG</string>
-            </array>
-        </config-file>
-
+        <source-file src="src/ios/NFCMABS101.swift"/>
         <!-- frameworks -->
         <framework src="CoreNFC.framework" weak="true"/>
-
-        <preference name="NFC_USAGE_DESCRIPTION" default="Read NFC Tags" />
-        <config-file target="*-Info.plist" parent="NFCReaderUsageDescription">
-            <string>$NFC_USAGE_DESCRIPTION</string>
-        </config-file>
     </platform>
 </plugin>
