@@ -1,7 +1,8 @@
 import Foundation
+import CoreNFC
 
 @objc(NFCMABS101Swift) 
-class NFCMABS101Swift : CDVPlugin {
+class NFCMABS101Swift : CDVPlugin, NSObject, NFCNDEFReaderSessionDelegate {
     @objc(echo:)
     func echo(command: CDVInvokedUrlCommand) {
         let inputParam = (command.arguments[0] as? NSObject)?.value(forKey: "param1") as? String ?? ""
@@ -10,4 +11,51 @@ class NFCMABS101Swift : CDVPlugin {
         let pluginResult = CDVPluginResult(status: status, messageAs: message)
         self.commandDelegate!.send(pluginResult, callbackId: command.callbackId)
     }
+
+
+    var nfcSession:NFCNDEFReaderSession?
+    var dataFromNFC = ""
+    func scan(withData:String){
+        
+        guard NFCReaderSession.readingAvailable else {
+            return
+        }
+                
+        nfcSession = NFCNDEFReaderSession(
+            delegate: self,
+            queue: nil,
+            invalidateAfterFirstRead: false // set true if read mode
+        )
+        nfcSession?.alertMessage = "Hold NFC card near iPhone"
+        nfcSession?.begin()
+    }
+
+    func readerSession(_ session: NFCNDEFReaderSession, didInvalidateWithError error: Error) {
+        
+    }
+
+    func readerSession(_ session: NFCNDEFReaderSession, didDetectNDEFs messages: [NFCNDEFMessage]) {
+        
+        print("Detected tags with \(messages.count) messages")
+        
+        for message in messages
+        {
+            for record in message.records
+            {
+                if record.typeNameFormat == .nfcWellKnown
+                {
+                    let val = record.wellKnownTypeTextPayload()
+                    print(val)
+                    if let s = val.0,!s.isEmpty,let v = val.0
+                    {
+                        dataFromNFC = v
+                        NotificationCenter.default.post(name: Notification.Name("NFCDataReceived"), object: nil, userInfo: ["data": dataFromNFC])
+
+                    }
+                }
+            }
+        }
+        session.invalidate()
+    }
+ 
 }
