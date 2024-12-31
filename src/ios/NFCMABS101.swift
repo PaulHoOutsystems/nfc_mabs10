@@ -2,7 +2,7 @@ import Foundation
 import CoreNFC
 
 @objc(NFCMABS101Swift) 
-class NFCMABS101Swift : CDVPlugin, NSObject, NFCNDEFReaderSessionDelegate {
+class NFCMABS101Swift : CDVPlugin, NFCNDEFReaderSessionDelegate {
     @objc(echo:)
     func echo(command: CDVInvokedUrlCommand) {
         let inputParam = (command.arguments[0] as? NSObject)?.value(forKey: "param1") as? String ?? ""
