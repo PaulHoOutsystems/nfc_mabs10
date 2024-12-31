@@ -13,6 +13,7 @@ class NFCMABS101Swift : CDVPlugin, NFCNDEFReaderSessionDelegate {
     }
 
 
+    // Adapted from https://github.com/cizodevahm/NFC-tag-reader/blob/main/nfcdemo/NFCWriter.swift
     var nfcSession:NFCNDEFReaderSession?
     var dataFromNFC = ""
     func scan(withData:String){
@@ -52,10 +53,15 @@ class NFCMABS101Swift : CDVPlugin, NFCNDEFReaderSessionDelegate {
                         NotificationCenter.default.post(name: Notification.Name("NFCDataReceived"), object: nil, userInfo: ["data": dataFromNFC])
 
                     }
+                    self.fireNdefEvent(message: message)
                 }
             }
         }
         session.invalidate()
     }
- 
+
+    func fireNdefEvent(message: NFCNDEFMessage) {
+        let response = message.ndefMessageToJSON()
+        //completed(response, nil)
+    } 
 }
