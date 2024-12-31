@@ -53,43 +53,10 @@ class NFCMABS101Swift : CDVPlugin, NFCNDEFReaderSessionDelegate {
                         NotificationCenter.default.post(name: Notification.Name("NFCDataReceived"), object: nil, userInfo: ["data": dataFromNFC])
 
                     }
-                    self.fireNdefEvent(message: message)
-                }
+                 }
             }
         }
         session.invalidate()
     }
 
-    func fireNdefEvent(message: NFCNDEFMessage) {
-        let response = message.ndefMessageToJSON()
-        //completed(response, nil)
-    } 
-}
-
-extension NFCNDEFMessage {
-    func ndefMessageToJSON() -> [AnyHashable: Any] {
-        let array = NSMutableArray()
-        for record in self.records {
-            let recordDictionary = self.ndefToNSDictionary(record: record)
-            array.add(recordDictionary)
-        }
-        let wrapper = NSMutableDictionary()
-        wrapper.setObject(array, forKey: "ndefMessage" as NSString)
-        
-        let returnedJSON = NSMutableDictionary()
-        returnedJSON.setValue("ndef", forKey: "type")
-        returnedJSON.setObject(wrapper, forKey: "tag" as NSString)
-
-        return returnedJSON as! [AnyHashable : Any]
-    }
-    
-    func ndefToNSDictionary(record: NFCNDEFPayload) -> NSDictionary {
-        let dict = NSMutableDictionary()
-        dict.setObject(record.typeNameFormat.rawValue, forKey: "tnf" as NSString)
-        dict.setObject([UInt8](record.type), forKey: "type" as NSString)
-        dict.setObject([UInt8](record.identifier), forKey: "id" as NSString)
-        dict.setObject([UInt8](record.payload), forKey: "payload" as NSString)
-        
-        return dict
-    }
 }
