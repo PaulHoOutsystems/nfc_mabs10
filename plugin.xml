@@ -48,8 +48,8 @@
             </feature>
             <preference name="UseSwiftLanguageVersion" value="5" />
         </config-file>
-        <source-file src="src/ios/NFCMABS101.swift"/>
-        <!-- frameworks 
+         <source-file src="src/ios/NFCMABS101.swift"/>
+         <!-- frameworks 
         <framework src="CoreNFC.framework" weak="true"/>
         -->
     </platform>
