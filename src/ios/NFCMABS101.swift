@@ -39,7 +39,7 @@ class NFCMABS101Swift : CDVPlugin, NFCNDEFReaderSessionDelegate {
     func invalidateSession(_ command: CDVInvokedUrlCommand) {
         nfcSession?.invalidate()
     }
-/*
+ 
     func enabled(_ command: CDVInvokedUrlCommand) {
         let errorResponse: [AnyHashable: Any] = [ // see https://unpkg.com/browse/cordova-plugin-fingerprint-aio@5.0.0/src/ios/Fingerprint.swift, line 80
             "message": "Something went wrong"
@@ -48,12 +48,12 @@ class NFCMABS101Swift : CDVPlugin, NFCNDEFReaderSessionDelegate {
 
         if NFCNDEFReaderSession.readingAvailable // see https://gist.github.com/basvankuijck/85684800c1351a0c9346356790cb742a, line 10
         {
-            pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: "Success");
+            pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: "Success")
         } 
         
         self.commandDelegate.send(pluginResult, callbackId:command.callbackId)
     }
-*/
+ 
     func readerSession(_ session: NFCNDEFReaderSession, didDetectNDEFs messages: [NFCNDEFMessage]) {
         
         print("Detected tags with \(messages.count) messages")
