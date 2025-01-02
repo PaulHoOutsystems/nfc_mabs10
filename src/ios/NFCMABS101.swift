@@ -36,7 +36,7 @@ class NFCMABS101Swift : CDVPlugin, NFCNDEFReaderSessionDelegate {
     }
 
     func invalidateSession(_ command: CDVInvokedUrlCommand) {
-        nfcSession?.invalidateSession()
+        nfcSession?.invalidate()
     }
 
     func enabled(_ command: CDVInvokedUrlCommand) {
