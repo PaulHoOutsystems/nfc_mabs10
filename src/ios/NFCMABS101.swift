@@ -34,12 +34,12 @@ class NFCMABS101Swift : CDVPlugin, NFCNDEFReaderSessionDelegate {
     func readerSession(_ session: NFCNDEFReaderSession, didInvalidateWithError error: Error) {
         
     }
-    
-/*
+
+
     func invalidateSession(_ command: CDVInvokedUrlCommand) {
         nfcSession?.invalidate()
     }
-
+/*
     func enabled(_ command: CDVInvokedUrlCommand) {
         let errorResponse: [AnyHashable: Any] = [ // see https://unpkg.com/browse/cordova-plugin-fingerprint-aio@5.0.0/src/ios/Fingerprint.swift, line 80
             "message": "Something went wrong"
