@@ -448,6 +448,36 @@ var nfc = {
   echo: function (win, fail) {
     cordova.exec(win, fail, "NfcPlugin", "echo", [[param1]]);
   },
+
+  close: function () {
+    return new Promise(function (resolve, reject) {
+      cordova.exec(resolve, reject, "NfcPlugin", "close", []);
+    });
+  },
+
+  removeMimeTypeListener: function (mimeType, callback, win, fail) {
+    document.removeEventListener("ndef-mime", callback, false);
+    cordova.exec(win, fail, "NfcPlugin", "removeMimeType", [mimeType]);
+  },
+
+  removeNdefListener: function (callback, win, fail) {
+    document.removeEventListener("ndef", callback, false);
+    cordova.exec(win, fail, "NfcPlugin", "removeNdef", []);
+  },
+
+  // iOS only
+  invalidateSession: function (win, fail) {
+    cordova.exec(win, fail, "NfcPlugin", "invalidateSession", []);
+  },
+
+  // Android NfcAdapter.enableReaderMode flags
+  FLAG_READER_NFC_A: 0x1,
+  FLAG_READER_NFC_B: 0x2,
+  FLAG_READER_NFC_F: 0x4,
+  FLAG_READER_NFC_V: 0x8,
+  FLAG_READER_NFC_BARCODE: 0x10,
+  FLAG_READER_SKIP_NDEF_CHECK: 0x80,
+  FLAG_READER_NO_PLATFORM_SOUNDS: 0x100,
 };
 
 // added since WP8 must call a named function, also used by iOS
