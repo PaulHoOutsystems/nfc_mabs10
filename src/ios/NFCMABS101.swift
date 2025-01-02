@@ -31,10 +31,6 @@ class NFCMABS101Swift : CDVPlugin, NFCNDEFReaderSessionDelegate {
         nfcSession?.begin()
     }
 
-    func readerSession(_ session: NFCNDEFReaderSession, didInvalidateWithError error: Error) {
-        
-    }
-
     func invalidateSession(_ command: CDVInvokedUrlCommand) {
         nfcSession?.invalidate()
     }
