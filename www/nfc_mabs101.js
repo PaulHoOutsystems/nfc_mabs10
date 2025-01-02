@@ -455,6 +455,16 @@ var nfc = {
     });
   },
 
+  addMimeTypeListener: function (mimeType, callback, win, fail) {
+    document.addEventListener("ndef-mime", callback, false);
+    cordova.exec(win, fail, "NfcPlugin", "registerMimeType", [mimeType]);
+  },
+
+  addNdefListener: function (callback, win, fail) {
+    document.addEventListener("ndef", callback, false);
+    cordova.exec(win, fail, "NfcPlugin", "registerNdef", []);
+  },
+
   removeMimeTypeListener: function (mimeType, callback, win, fail) {
     document.removeEventListener("ndef-mime", callback, false);
     cordova.exec(win, fail, "NfcPlugin", "removeMimeType", [mimeType]);
